@@ -1,0 +1,51 @@
+
+.team {
+    &__member {
+        position: relative;
+        margin-bottom: 30px;
+
+        &--description--wrapper {
+            display: none;
+            background-color: #6ff6eb;
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+        }
+    }
+
+}
+
+
+
+
+.description__content {
+    padding: 40px;
+}
+.member {
+    &__name {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #3e3f3f;
+        margin-bottom: 15px;
+    }
+    &__description  {
+        margin-bottom: 15px;
+    }
+    &__job {
+        font-size: 15px;
+        font-style: italic;
+        color: $color-lightGrey;
+    }
+    &__social {
+        display: flex;
+        
+    }
+}
+.social__img--wrapper {
+    margin: 0 10px;
+}
+

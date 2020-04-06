@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700');
+@import '~bootstrap/scss/bootstrap.scss';
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+
+}
+a {
+
+}
+.phon {
+  background: rgb(94, 21, 104);
+}
+
+img {
+  max-width: 100%;
+}
+
+@import "app/_scss-core/_core";
+
+@import "scss/helpers";
+@import "scss/typography";
+@import "scss/team";
+@import "scss/brand";
+
+@import "scss/appNew";
+@import "scss/userList";
+
+
