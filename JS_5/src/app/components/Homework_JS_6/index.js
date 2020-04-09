@@ -1,9 +1,6 @@
 let userList = document.getElementById("userList");
-let citiesDiv = document.getElementById("cities");
-let companiesDiv = document.getElementById("companies");
-let counter = 1;
-let cities = [];
-let companies = [];
+
+
 
 let usersStructure = [
     {
@@ -243,91 +240,89 @@ let showUsers = () =>{
     
     for(let i = 0; i<usersStructure.length; i++){
 
-        let showAdress = (address) =>{
-            let str='';
-            for(let key in address){
-               if (key == "geo"){ break;}
-                str += address[key]+" \n";
-            }
-           
-            return str;
-        }
-
-        let showCompany = (company) =>{
-            let str='';
-            for(let key in company){
-                str += company[key]+" \n";
-            }
-           
-            return str;
-        }
-
         userList.innerHTML += `
         <div class="userList__item">
                 <div class="row">
                     <div class="col-1">
-                        <span class="userList__item--counter">${counter}</span>
+                        <span class="userList__item--counter">${i+1}</span>
                     </div>
-                    <div class="col-2">
+                    <div class="col-7">
                         <span class="userList__item--name">${usersStructure[i].name}</span>
                     </div>
-                    <div class="col-2">
-                        <span class="userList__item--email">${usersStructure[i].email}</span>
+                    <div class="col-4">
+                        <button class="userList__item--button" data-user-id = "${usersStructure[i].id-1}">Show details</button>
                     </div>
-                    <div class="col-3">
-                        <span class="userList__item--adress">${showAdress(usersStructure[i].address)}</span>
-                    </div>
-                    <div class="col-2">
-                        <span class="userList__item--telephone">${usersStructure[i].phone}</span>
-                    </div>
-                    <div class="col-2">
-                        <span class="userList__item--company">${showCompany(usersStructure[i].company)}</span>
-                    </div>
+                    
                 </div>
             </div>
+            <hr>
         `
-        counter++;
-        cities.indexOf(usersStructure[i].address.city) == -1 ? cities.push(usersStructure[i].address.city) : null;
-        if(companies.indexOf(usersStructure[i].company.name) == -1){
-            let newCompany = {
-                name: usersStructure[i].company.name,
-                catchPhrase: usersStructure[i].company.catchPhrase,
-                bs: usersStructure[i].company.bs
-            }
-            companies.push(newCompany);
-        
-        } 
+         
     }
 }
 
-let showCities = () => {
+let showMoreBtn = document.getElementsByClassName("userList__item--button");
+let modalCloseBtn = document.getElementById("closeModalBtn");
+let modal = document.getElementById("modal");
+let modalContent = document.getElementById("userDetails");
+
+
+function addOnCLick() {
     
-    cities.forEach(city =>{
-        let newCity = '<ol>' + city + '</ol>';
-        citiesDiv.innerHTML += newCity;
-    })
+    for(let i = 0; i<showMoreBtn.length; i++){
+        showMoreBtn[i].onclick = showModal;
+    }
+   
+    modalCloseBtn.addEventListener("click", function(){   
+        modal.style.display = "none";
+        modalContent.innerHTML = "";
+    });
+
 }
 
-// let showCompanies = () => {
-    
-//     companies.forEach(company => {
-//         let newCompany = '<ol>'+ company.name + "  " +company.catchPhrase + "  " + company.bs + "</ol>";
-//         companiesDiv.innerHTML += newCompany;
-//     })
-// }
 
-let showCompanies = () => {
-    let comp = document.createElement('div');
-    companies.forEach(company => {
-        let newCompany = '<ol>'+ company.name + "  " +company.catchPhrase + "  " + company.bs + "</ol>";
-        comp.innerHTML += newCompany;
-    })
-    document.body.append(comp);
+function showModal(event) {
+    let clickUserId = event.target.dataset.userId;
+    modal.style.display = "block";
+    showUserDetails(event,clickUserId);
 }
+
+function showUserDetails(event,clickUserId){
+
+    modalContent.innerHTML +=`
+    <p class="userEmail">Name:${usersStructure[clickUserId].name}</p>
+                <p class="userEmail">Email:${usersStructure[clickUserId].email}</p>
+                <p class="userAdress">Adress:${ showAdress(usersStructure[clickUserId].address)}</p>
+                <p class="userPhone">Phone:${usersStructure[clickUserId].phone}</p>
+                <p class="userCompany">Company:${showCompany(usersStructure[clickUserId].company)}</p>
+                
+    `;
+}
+
+let showAdress = (address) =>{
+    let str='';
+    for(let key in address){
+       if (key == 'geo'){
+           str += showAdress(address.geo);
+        }else{
+            str +="<p>" + key +":" + address[key]+" </p>";
+        }
+    }
+    return str;
+}
+
+let showCompany = (company) =>{
+    let str='';
+    for(let key in company){
+        str +="<p>" + key +":" + company[key]+" </p>";
+    }
+   
+    return str;
+}
+
 
 showUsers();
-showCities();
-showCompanies();
+addOnCLick();
 
 
 

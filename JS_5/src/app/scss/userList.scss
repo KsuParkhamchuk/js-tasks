@@ -1,7 +1,39 @@
 .userList__item {
-    margin: 20px 0;
+    margin: 0px auto;
+    padding: 20px 0;
+    max-width: 700px;
 
     &--counter {
         margin-left: 20px;
     }
+
+    
+}
+
+.modalWrapper {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    
+    .modalWindow {
+        position: absolute;
+        left: calc(50% - 300px);
+        top: 10%;
+        width: 600px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #dddddd;
+
+        &__content {
+            padding: 30px;
+        }
+    }
+}
+
+.userList__item:nth-child() {
+    background-color: #eeeeee;
 }
