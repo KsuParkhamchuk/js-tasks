@@ -14,13 +14,14 @@
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,0.4);
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     display: none;
     
     .modalWindow {
         position: absolute;
+        max-height: 400px;
         left: calc(50% - 300px);
         top: 10%;
         width: 600px;

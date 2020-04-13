@@ -1,4 +1,6 @@
-let userList = document.getElementById("userList");
+const $ = require('jquery');
+global.$ = global.jQuery = $;
+
 
 
 
@@ -240,7 +242,7 @@ let showUsers = () =>{
     
     for(let i = 0; i<usersStructure.length; i++){
 
-        userList.innerHTML += `
+      $(".userList").append(`
         <div class="userList__item">
                 <div class="row">
                     <div class="col-1">
@@ -256,26 +258,22 @@ let showUsers = () =>{
                 </div>
             </div>
             <hr>
-        `
-         
+        `) 
     }
 }
 
-let showMoreBtn = document.getElementsByClassName("userList__item--button");
-let modalCloseBtn = document.getElementById("closeModalBtn");
-let modal = document.getElementById("modal");
-let modalContent = document.getElementById("userDetails");
 
 
 function addOnCLick() {
-    
-    for(let i = 0; i<showMoreBtn.length; i++){
-        showMoreBtn[i].onclick = showModal;
-    }
+
+  $('.userList__item--button').each(function(i, element){
+    element.onclick = showModal;
+    //element.on("click",showModal)
+  })
    
-    modalCloseBtn.addEventListener("click", function(){   
-        modal.style.display = "none";
-        modalContent.innerHTML = "";
+  $("#closeModalBtn").on("click", function(){   
+        $("#modal").css("display", "none");
+        $("#userDetails").empty();
     });
 
 }
@@ -283,20 +281,21 @@ function addOnCLick() {
 
 function showModal(event) {
     let clickUserId = event.target.dataset.userId;
-    modal.style.display = "block";
+    $("#modal").css("display", "block");
     showUserDetails(event,clickUserId);
 }
 
 function showUserDetails(event,clickUserId){
 
-    modalContent.innerHTML +=`
-    <p class="userEmail">Name:${usersStructure[clickUserId].name}</p>
+  $("#userDetails").append (`
+                <p class="userEmail">Name:${usersStructure[clickUserId].name}</p>
                 <p class="userEmail">Email:${usersStructure[clickUserId].email}</p>
                 <p class="userAdress">Adress:${ showAdress(usersStructure[clickUserId].address)}</p>
                 <p class="userPhone">Phone:${usersStructure[clickUserId].phone}</p>
                 <p class="userCompany">Company:${showCompany(usersStructure[clickUserId].company)}</p>
                 
-    `;
+    `);
+    
 }
 
 let showAdress = (address) =>{
@@ -316,13 +315,13 @@ let showCompany = (company) =>{
     for(let key in company){
         str +="<p>" + key +":" + company[key]+" </p>";
     }
-   
     return str;
 }
 
 
 showUsers();
 addOnCLick();
+
 
 
 
