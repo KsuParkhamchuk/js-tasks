@@ -7,7 +7,7 @@ import './app.scss';
 
 //import './components/Lesson_JS_4'
 //import './components/Lesson_JS_5'
-import './components/Homework_JS_8'
+import './components/Homework_JS_9'
 import $ from 'jquery'
 
 window.jQuery = $;
