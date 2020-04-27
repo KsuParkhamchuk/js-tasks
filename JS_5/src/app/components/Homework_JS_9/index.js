@@ -311,8 +311,6 @@ function UserListConstructor(usersPlacement, users) {
        this.initUserList(filteredList);
     }
 
-    
-
     this.createUniqueArr = function (users, parametr) {
 
         let uniqueArr = [];
