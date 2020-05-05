@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="ru">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test</title>
+
+</head>
+
+<body>
+    <label for="">Search by users:</label>
+        <input class="userIdInput" type="text">
+        <button class="searchByUserId">Search</button>
+    <div id="postsList" class="postsList d-flex flex-wrap">
+        
+        <div class="col-6">
+            <div class="postItem__content">
+                <div class="postItem__content--header d-flex">
+                    <p class="postItem__content--header--id">1</p>
+                    <p class="postItem__content--header--title mx-3 font-weight-bold">Hello</p>
+                    <p class="postItem__content--header--userId">Author:1</p>
+                </div>
+                <div class="postItem__content--body">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, dolorem accusantium fugit in quibusdam deserunt optio eos nobis quisquam eum odit, sequi porro ea corrupti quod sint ratione repellendus maiores?
+                </div>
+                <div class="controlPanel">
+                    <button class="deletePost">Delete</button>
+                    <button class="editPost">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modalWrapper">
+        <div class="modalWindow">
+            <div id="modalContent" class="modalWindow__content">
+                <div id="userDetails" class="modalContent__userDetails"></div>
+                <button id="closeModalBtn" class="modalWindow__closeBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
